@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
+import { Feeds } from '../providers/feeds';
 //-- app pages
 import { SummaryPage } from '../pages/summary/summary';
 import { ReadPage } from '../pages/read/read';
@@ -32,7 +33,9 @@ import { AboutPage } from '../pages/about/about';
     SettingsPage,
     AboutPage
   ],
-  providers: []
+  providers: [
+    Feeds
+  ]
 })
 
 export class AppModule {}
