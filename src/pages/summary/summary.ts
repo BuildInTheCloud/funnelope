@@ -7,7 +7,7 @@ import { Feeds } from '../../providers/feeds';
 })
 
 export class SummaryPage {
-  feed: any;
+  feed: any = [];
   errorMessage: any;
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
@@ -17,10 +17,10 @@ export class SummaryPage {
   loadData() {
     this.feeds.load().then(
       data => {
-        this.feed = data;
-        console.log(data);
+        console.log(data.results.item);
+        this.feed = data.results.item;
       },
-      error => { this.feed = null; this.errorMessage = <any>error; }
+      error => { this.feed = []; this.errorMessage = <any>error; }
     );
 
   }
