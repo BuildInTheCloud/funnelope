@@ -5,8 +5,14 @@
 
 // Shared Variables
 // --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
 $text-color:        #000;
-$background-color:  #fff;
+$background-color:  #eee;
+$headings-font-weight: 300;
 
 
 // Named Color Variables
@@ -20,6 +26,43 @@ $colors: (
   favorite:   #69BB7B
 );
 
+
+// App iOS Variables
+// --------------------------------------------------
+$text-ios-color:                           #000;
+$toolbar-ios-background:                   color($colors, primary);
+$tabs-ios-background:                      #f8f8f8;
+$tabs-ios-tab-color-active:                color($colors, primary);
+$tabs-ios-tab-color:                       rgba(#8c8c8c, 0.7);
+$toolbar-ios-active-color:                 #fff;
+$toolbar-ios-inactive-color:               #fff;
+$segment-button-ios-text-color-activated:  #fff;
+$card-ios-background-color: #fff;
+
+
+// App Material Design Variables
+// --------------------------------------------------
+$text-md-color:                           #000;
+$toolbar-md-background:                   color($colors, primary);
+$tabs-md-background:                      #f8f8f8;
+$tabs-md-tab-color-active:                color($colors, primary);
+$tabs-md-tab-color:                       rgba(#8c8c8c, 0.7);
+$toolbar-md-active-color:                 #fff;
+$toolbar-md-inactive-color:               #fff;
+$segment-button-md-text-color-activated:  #fff;
+$card-md-background-color: #fff;
+
+// App Windows Variables
+// --------------------------------------------------
+$text-wp-color:                           #000;
+$toolbar-wp-background:                   color($colors, primary);
+$tabs-wp-background:                      #f8f8f8;
+$tabs-wp-tab-color-active:                color($colors, primary);
+$tabs-wp-tab-color:                       rgba(#8c8c8c, 0.7);
+$toolbar-wp-active-color:                 #fff;
+$toolbar-wp-inactive-color:               #fff;
+$segment-button-wp-text-color-activated:  #fff;
+$card-wp-background-color: #fff;
 
 // App Theme
 // --------------------------------------------------

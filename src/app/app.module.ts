@@ -7,8 +7,8 @@ import { Feeds } from '../providers/feeds';
 import { SummaryPage } from '../pages/summary/summary';
 import { ReadPage } from '../pages/read/read';
 import { ProfilePage } from '../pages/profile/profile';
-import { SettingsPage } from '../pages/settings/settings';
 import { AboutPage } from '../pages/about/about';
+import { FeedsPage } from '../pages/feeds/feeds';
 
 @NgModule({
   declarations: [
@@ -17,8 +17,8 @@ import { AboutPage } from '../pages/about/about';
     SummaryPage,
     ReadPage,
     ProfilePage,
-    SettingsPage,
-    AboutPage
+    AboutPage,
+    FeedsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -30,8 +30,8 @@ import { AboutPage } from '../pages/about/about';
     SummaryPage,
     ReadPage,
     ProfilePage,
-    SettingsPage,
-    AboutPage
+    AboutPage,
+    FeedsPage
   ],
   providers: [
     Feeds

@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { SummaryPage } from '../summary/summary';
 import { ReadPage } from '../read/read';
 import { ProfilePage } from '../profile/profile';
-import { SettingsPage } from '../settings/settings';
 import { AboutPage } from '../about/about';
 
 @Component({
@@ -15,7 +14,6 @@ export class TabsPage {
   tabSummary: any = SummaryPage;
   tabRead: any = ReadPage;
   tabProfile: any = ProfilePage;
-  tabSettings: any = SettingsPage;
   tabAbout: any = AboutPage;
 
   constructor() {
