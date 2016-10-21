@@ -3,7 +3,7 @@
     <ion-title>Browse News</ion-title>
   </ion-navbar>
   <ion-searchbar
-    placeholder="item search"
+    placeholder="Search title and details"
     [(ngModel)]="searchFor"
     [showCancelButton]="shouldShowCancel"
     (ionInput)="onSearchInput($event)"
@@ -19,7 +19,7 @@
   </ion-item>
   <img *ngIf="article.content" src="{{article.content.url}}"/>
   <ion-card-content>
-    <p>{{article.description}}</p>
+    <p [innerHTML]="article.description"></p>
   </ion-card-content>
   <ion-row>
     <ion-col>
