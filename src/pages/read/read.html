@@ -1,10 +1,45 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Read</ion-title>
+    <ion-title>Browse News</ion-title>
   </ion-navbar>
+  <ion-searchbar
+    placeholder="item search"
+    [(ngModel)]="searchFor"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onSearchInput($event)"
+    (ionCancel)="onSearchCancel($event)">
+  </ion-searchbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+<ion-card *ngFor="let article of feed">
+  <ion-item>
+    <h2>{{article.title}}</h2>
+    <p>{{article.creator}}<br/>{{article.pubDate}}</p>
+  </ion-item>
+  <img *ngIf="article.content" src="{{article.content.url}}"/>
+  <ion-card-content>
+    <p>{{article.description}}</p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <button primary clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button primary clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        11h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+</ion-card>
 
 </ion-content>

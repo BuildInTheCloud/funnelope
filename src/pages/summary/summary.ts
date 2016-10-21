@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Feeds } from '../../providers/feeds';
+
 @Component({
   selector: 'page-summary',
   templateUrl: 'summary.html'
