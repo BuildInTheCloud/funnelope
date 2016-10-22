@@ -1,0 +1,5 @@
+[
+    {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/"},
+    {"key": "gamespot-new-releases", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/new_releases/"},
+    {"key": "gamespot-new-games", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/new-games/"}
+]

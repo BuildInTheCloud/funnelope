@@ -4,7 +4,8 @@ import { Feeds } from '../../providers/feeds';
 
 @Component({
   selector: 'page-summary',
-  templateUrl: 'summary.html'
+  templateUrl: 'summary.html',
+  providers: [Feeds]
 })
 
 export class SummaryPage {
@@ -15,17 +16,9 @@ export class SummaryPage {
 
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
-    this.loadData();
-  }
-
-  loadData() {
-    this.feeds.load().then(
-      data => {
-        this.feedRAW = data;
-        this.feed = data;
-      },
-      error => { this.feedRAW = []; this.feed = []; this.errorMessage = <any>error; }
-    );
+    this.feedRAW = feeds.load();
+    this.feed = this.feedRAW;
+    console.log("SUMMARY", this.feed);
   }
 
   onSearchInput(event) {
