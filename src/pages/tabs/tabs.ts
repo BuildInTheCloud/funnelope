@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
 //-- app pages for tabs
-import { SummaryPage } from '../summary/summary';
-import { ReadPage } from '../read/read';
+import { NewsPage } from '../news/news';
 import { ProfilePage } from '../profile/profile';
 import { AboutPage } from '../about/about';
 
@@ -11,8 +10,7 @@ import { AboutPage } from '../about/about';
 })
 
 export class TabsPage {
-  tabSummary: any = SummaryPage;
-  tabRead: any = ReadPage;
+  tabNews: any = NewsPage;
   tabProfile: any = ProfilePage;
   tabAbout: any = AboutPage;
 

@@ -5,8 +5,7 @@ import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Feeds } from '../providers/feeds';
 //-- app pages
-import { SummaryPage } from '../pages/summary/summary';
-import { ReadPage } from '../pages/read/read';
+import { NewsPage } from '../pages/news/news';
 import { ProfilePage } from '../pages/profile/profile';
 import { AboutPage } from '../pages/about/about';
 import { FeedsPage } from '../pages/feeds/feeds';
@@ -15,8 +14,7 @@ import { FeedsPage } from '../pages/feeds/feeds';
   declarations: [
     MyApp,
     TabsPage,
-    SummaryPage,
-    ReadPage,
+    NewsPage,
     ProfilePage,
     AboutPage,
     FeedsPage
@@ -28,8 +26,7 @@ import { FeedsPage } from '../pages/feeds/feeds';
   entryComponents: [
     MyApp,
     TabsPage,
-    SummaryPage,
-    ReadPage,
+    NewsPage,
     ProfilePage,
     AboutPage,
     FeedsPage

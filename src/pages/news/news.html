@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>News</ion-title>
+  </ion-navbar>
+  <ion-searchbar
+    placeholder="Search title and details"
+    [(ngModel)]="searchFor"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onSearchInput($event)"
+    (ionCancel)="onSearchCancel($event)">
+  </ion-searchbar>
+</ion-header>
+
+<ion-content>
+<ion-card *ngFor="let article of feed; let key = index;">
+  <ion-item>
+    <ion-avatar item-left><img src="assets/images/{{article.icon}}"></ion-avatar>
+    <h2>{{article.title}}</h2>
+    <p>{{article.pubDate}}</p>
+  </ion-item>
+  <img *ngIf="article.content" src="{{article.content.url}}"/>
+  <ion-card-content>
+    <p *ngIf="!article.description || (article.description && article.description.length < 10)" [innerHTML]="article.title"></p>
+    <button class="more" *ngIf="article.description && article.description.length > 10" (click)="showDetails(key, $event)">
+      <ion-icon name="paper"></ion-icon>
+      <span>Click to read more ...</span>
+    </button>
+    <p class="hideIT" id="detail{{key}}" *ngIf="article.description" [innerHTML]="article.description"></p>
+    <h2 *ngIf="article.creator"><strong>Author:</strong> <i>{{article.creator}}</i></h2>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <a target="_blank" href="{{article.link}}">
+        <ion-icon name="link"></ion-icon>
+        <span>Go To Site For Full Article</span>
+      </a>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+</ion-content>

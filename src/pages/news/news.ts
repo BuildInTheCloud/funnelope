@@ -3,16 +3,17 @@ import { NavController } from 'ionic-angular';
 import { Feeds } from '../../providers/feeds';
 
 @Component({
-  selector: 'page-read',
-  templateUrl: 'read.html',
+  selector: 'page-news',
+  templateUrl: 'news.html',
   providers: []
 })
 
-export class ReadPage {
+export class NewsPage {
   feedRAW: any = [];
   feed: any = [];
   errorMessage: any;
   searchFor: string = "";
+
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
   }
@@ -30,6 +31,10 @@ export class ReadPage {
     );
   }
 
+  showDetails(indexKey, event) {
+    event.srcElement.parentNode.className = "hideIT";
+    event.srcElement.parentNode.nextElementSibling.className = "showIT";
+  }
   onSearchInput(event) {
     var searchText = event.target.value;
     if (searchText == "" || searchText == undefined) {

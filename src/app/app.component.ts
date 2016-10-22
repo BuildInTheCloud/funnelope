@@ -14,9 +14,6 @@ export class MyApp {
 
   constructor(public platform: Platform, public feeds: Feeds) {
     platform.ready().then(() => {
-      feeds.init();
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
     });
   }

@@ -11,7 +11,7 @@ export class Feeds {
   public cache: any = [];
 
   constructor(public http: Http, public storage: Storage) {
-
+    this.init();
   }
 
   public getFeedMaster(): any {
@@ -24,7 +24,7 @@ export class Feeds {
         })
       ;
     } else {
-      //console.log("CACHE", this.cache);
+      console.log("IN CACHE");
     }
   }
 
