@@ -43,11 +43,13 @@ export class Feeds {
   }
 
   private buildNewsCache(): any {
-    this.feedMaster.forEach(feed => { this.featchFeed(feed); });
+    this.feedMaster.forEach(feed => {
+      this.featchFeed(feed);
+    });
   }
 
   private featchFeed(feed: any) {
-    //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/"},
+    //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
     var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
     this.http.get(url).subscribe(res => {
       var newFeed: any = feed;
@@ -61,18 +63,22 @@ export class Feeds {
 
   private mergeFeeds() {
     this.feedMaster.forEach(source => {
-      console.log("mergeFeeds", source.feed);
       source.feed.forEach(news => {
         this.cache.push(news);
       });
       this.storage.set('savedFeeds', JSON.stringify(this.cache) );
-      console.log("STORE SAVE", this.cache);
     });
   }
 
   private processRawFeed(data, type) {
     if (type == "rss") {
-      return data.query.results.item;
+      var returnItems = data.query.results.item;
+      returnItems.forEach(source => {
+        if (source.description) {
+          source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ")
+        }
+      });
+      return returnItems;
     }
     if (type == "atom") {
       return data.query.results.item;
