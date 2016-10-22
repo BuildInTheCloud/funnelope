@@ -25,7 +25,7 @@ export class Feeds {
         })
       ;
     } else {
-      console.log("CACHE", this.cache);
+      //console.log("CACHE", this.cache);
     }
   }
 
@@ -48,7 +48,6 @@ export class Feeds {
       var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
       this.http.get(url).subscribe(res => {
         var newFeed: any = feed;
-        console.log(feed);
         var rawFeed = this.processRawFeed(res.json(), feed.type);
         rawFeed.forEach(source => {
           source.icon = feed.icon;

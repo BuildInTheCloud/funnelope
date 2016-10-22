@@ -5,7 +5,7 @@ import { Feeds } from '../../providers/feeds';
 @Component({
   selector: 'page-summary',
   templateUrl: 'summary.html',
-  providers: [Feeds]
+  providers: []
 })
 
 export class SummaryPage {
@@ -16,8 +16,9 @@ export class SummaryPage {
 
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
-    this.loadData();
   }
+
+  ngOnInit() {this.loadData();}
 
   loadData() {
     this.feeds.load().then(

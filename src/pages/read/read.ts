@@ -5,7 +5,7 @@ import { Feeds } from '../../providers/feeds';
 @Component({
   selector: 'page-read',
   templateUrl: 'read.html',
-  providers: [Feeds]
+  providers: []
 })
 
 export class ReadPage {
@@ -15,8 +15,9 @@ export class ReadPage {
   searchFor: string = "";
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
-    this.loadData();
   }
+
+  ngOnInit() {this.loadData();}
 
   loadData() {
     this.feeds.load().then(

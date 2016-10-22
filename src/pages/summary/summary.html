@@ -28,22 +28,25 @@
     <p>{{article.title}}</p>
   </ion-card-content>
   <ion-row>
-    <ion-col>
+    <ion-col style="display:none;">
       <button primary clear small>
         <ion-icon name="thumbs-up"></ion-icon>
         <div>12 Likes</div>
       </button>
     </ion-col>
-    <ion-col>
+    <ion-col style="display:none;">
       <button primary clear small>
         <ion-icon name="text"></ion-icon>
         <div>4 Comments</div>
       </button>
     </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        11h ago
-      </ion-note>
+    <ion-col>
+      <button primary clear small>
+        <a target="_blank" href="{{article.link}}">
+          <ion-icon name="text"></ion-icon>
+          <div>Read full Article</div>
+        </a>
+      </button>
     </ion-col>
   </ion-row>
 </ion-card>
