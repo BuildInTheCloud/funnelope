@@ -1,6 +1,5 @@
-import { Injectable, Provider } from '@angular/core';
-import { Http, Response} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Http} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -38,7 +37,7 @@ export class Feeds {
     return this.storage.get('savedFeeds').then(data => {
       let objFromString = JSON.parse(data);
       if (data !== null && data !== undefined) {
-        return JSON.parse(data);
+        return objFromString;
       }
     });
   }
