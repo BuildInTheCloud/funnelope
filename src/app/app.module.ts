@@ -35,18 +35,15 @@ import { FeedsPage } from '../pages/feeds/feeds';
     FeedsPage
   ],
   providers: [
-    Feeds,
-    Storage
-    /*
+    Storage,
     { provide: Feeds,
         useFactory: (config: Feeds) => () => config.init(),
         deps: [],
         multi: true
     }
-    */
   ]
 })
 
 export class AppModule {
-  title: string = "sfsdfsf";
+
 }

@@ -12,7 +12,7 @@ export class Feeds {
   public cache: any = [];
 
   constructor(public http: Http, public storage: Storage) {
-    this.getFeedMaster();
+
   }
 
   public getFeedMaster(): any {
@@ -30,7 +30,8 @@ export class Feeds {
   }
 
   public init(): Promise<any> {
-    return Promise.resolve(true);
+    console.log("INIT FEED");
+    return Promise.resolve( this.getFeedMaster() );
   }
 
   public load(): any {
