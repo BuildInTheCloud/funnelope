@@ -48,5 +48,5 @@ import { FeedsPage } from '../pages/feeds/feeds';
 })
 
 export class AppModule {
-
+  title: string = "sfsdfsf";
 }

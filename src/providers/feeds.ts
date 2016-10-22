@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Provider } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
@@ -34,8 +34,7 @@ export class Feeds {
   }
 
   public load(): any {
-    this.storage.get('savedFeeds').then(data => {
-      console.log("STORE READ", data);
+    return this.storage.get('savedFeeds').then(data => {
       let objFromString = JSON.parse(data);
       if (data !== null && data !== undefined) {
         return JSON.parse(data);
@@ -81,3 +80,4 @@ export class Feeds {
   }
 
 }
+

@@ -15,9 +15,18 @@ export class ReadPage {
   searchFor: string = "";
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
-    this.feedRAW = feeds.load();
-    this.feed = this.feedRAW;
-    console.log("SUMMARY", this.feed);
+    this.loadData();
+  }
+
+  loadData() {
+    this.feeds.load().then(
+      data => {
+        this.feed = data;
+        this.feedRAW = data;
+        this.feed = data;
+      },
+      error => { this.feedRAW = []; this.feed = []; this.errorMessage = <any>error; }
+    );
   }
 
   onSearchInput(event) {
