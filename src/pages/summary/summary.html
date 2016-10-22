@@ -14,6 +14,9 @@
 <ion-content>
 <ion-card *ngFor="let article of feed">
   <ion-item>
+    <ion-avatar item-left>
+        <img src="assets/images/{{article.icon}}">
+    </ion-avatar>
     <h2>{{article.creator}}</h2>
     <p>{{article.pubDate}}</p>
   </ion-item>

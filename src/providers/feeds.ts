@@ -44,29 +44,26 @@ export class Feeds {
 
   private buildNewsCache(): any {
     this.feedMaster.forEach(feed => {
-      this.featchFeed(feed);
-    });
-  }
-
-  private featchFeed(feed: any) {
-    //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
-    var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
-    this.http.get(url).subscribe(res => {
-      var newFeed: any = feed;
-      newFeed.feed = this.processRawFeed(res.json(), feed.type);
-      this.feedsRaw.push(newFeed);
-      if (this.feedsRaw.length >= this.feedMaster.length) {
-        this.mergeFeeds();
-      }
-    });
-  }
-
-  private mergeFeeds() {
-    this.feedMaster.forEach(source => {
-      source.feed.forEach(news => {
-        this.cache.push(news);
+      //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
+      var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
+      this.http.get(url).subscribe(res => {
+        var newFeed: any = feed;
+        console.log(feed);
+        var rawFeed = this.processRawFeed(res.json(), feed.type);
+        rawFeed.forEach(source => {
+          source.icon = feed.icon;
+        });
+        newFeed.feed = rawFeed;
+        this.feedsRaw.push(newFeed);
+        if (this.feedsRaw.length >= this.feedMaster.length) {
+          this.feedMaster.forEach(source => {
+            source.feed.forEach(news => {
+              this.cache.push(news);
+            });
+            this.storage.set('savedFeeds', JSON.stringify(this.cache) );
+          });
+        }
       });
-      this.storage.set('savedFeeds', JSON.stringify(this.cache) );
     });
   }
 
@@ -81,7 +78,13 @@ export class Feeds {
       return returnItems;
     }
     if (type == "atom") {
-      return data.query.results.item;
+      var returnItems = data.query.results.item;
+      returnItems.forEach(source => {
+        if (source.description) {
+          source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ")
+        }
+      });
+      return returnItems;
     }
   }
 
