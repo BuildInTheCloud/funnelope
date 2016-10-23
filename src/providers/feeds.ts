@@ -52,6 +52,7 @@ export class Feeds {
         rawFeed.forEach(source => {
           //console.log(3);
           source.icon = feed.icon;
+          source.logo = feed.logo;
         });
         newFeed.feed = rawFeed;
         this.feedsRaw.push(newFeed);
@@ -75,9 +76,13 @@ export class Feeds {
     if (type == "rss") {
       var returnItems = data.query.results.item;
       returnItems.forEach(source => {
-        //console.log(6);
         if (source.description) {
-          source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ")
+          try {
+            source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ");
+          } catch(e) {
+            source.description = JSON.stringify(source.description)
+            source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ");
+          }
         }
       });
       return returnItems;
@@ -87,7 +92,7 @@ export class Feeds {
       returnItems.forEach(source => {
         //console.log(7);
         if (source.description) {
-          source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ")
+          source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ");
         }
       });
       return returnItems;

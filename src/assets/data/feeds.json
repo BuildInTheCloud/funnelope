@@ -1,5 +1,5 @@
 [
-    {"key": "gamespot-news", "type": "rss", "icon": "gamespot-icon.png", "logo": "", "url": "http://www.gamespot.com/feeds/news/"},
-    {"key": "gamespot-new-releases", "type": "rss", "icon": "gamespot-icon.png", "logo": "", "url": "http://www.gamespot.com/feeds/new_releases/"},
-    {"key": "gamespot-new-games", "type": "rss", "icon": "gamespot-icon.png", "logo": "", "url": "http://www.gamespot.com/feeds/new-games/"}
+    {"key": "gamespot-news", "type": "rss", "icon": "gamespot-icon.png", "logo": "gamespot.jpg", "url": "http://www.gamespot.com/feeds/news/"},
+    {"key": "gamespot-new-releases", "type": "rss", "icon": "gamespot-icon.png", "logo": "gamespot.jpg", "url": "http://www.gamespot.com/feeds/new_releases/"},
+    {"key": "nytimes", "type": "rss", "icon": "nytimes-icon.png", "logo": "nytimes.jpg", "url": "http://rss.nytimes.com/services/xml/rss/nyt/Business.xml"}
 ]

@@ -13,7 +13,7 @@ export class NewsPage {
   feed: any = [];
   errorMessage: any;
   searchFor: string = "";
-  shouldShowCancel: boolean = true;
+  shouldShowCancel: boolean = false;
 
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
@@ -35,10 +35,20 @@ export class NewsPage {
   showDetails(indexKey, event) {
     event.srcElement.parentNode.className = "hideIT";
     event.srcElement.parentNode.nextElementSibling.className = "showIT";
+    event.srcElement.parentNode.nextElementSibling.nextElementSibling.className = "more";
   }
+
+  hideDetails(indexKey, event) {
+    event.srcElement.parentNode.className = "hideIT";
+    event.srcElement.parentNode.previousElementSibling.className = "hideIT";
+    event.srcElement.parentNode.previousElementSibling.previousElementSibling.className = "more";
+    event.srcElement.parentNode.previousElementSibling.previousElementSibling.focus();
+  }
+
   onSearchCancel(event) {
     this.feed = this.feedRAW;
   }
+
   onSearchInput(event) {
     var searchText = event.target.value;
     if (searchText == "" || searchText == undefined) {

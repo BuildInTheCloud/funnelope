@@ -19,13 +19,18 @@
     <p>{{article.pubDate}}</p>
   </ion-item>
   <img *ngIf="article.content" src="{{article.content.url}}"/>
+  <img *ngIf="!article.content" src="assets/images/{{article.logo}}"/>
   <ion-card-content>
     <p *ngIf="!article.description || (article.description && article.description.length < 10)" [innerHTML]="article.title"></p>
-    <button class="more pull-right" *ngIf="article.description && article.description.length > 10" (click)="showDetails(key, $event)">
+    <button class="more" *ngIf="article.description && article.description.length > 10" (click)="showDetails(key, $event)">
       <ion-icon name="paper"></ion-icon>
       <span>Click to read more ...</span>
     </button>
-    <p class="hideIT" id="detail{{key}}" *ngIf="article.description" [innerHTML]="article.description"></p>
+    <div class="hideIT" id="detail{{key}}" *ngIf="article.description" [innerHTML]="article.description"></div>
+    <button class="hideIT" (click)="hideDetails(key, $event)">
+      <ion-icon name="paper"></ion-icon>
+      <span>Hide details ...</span>
+    </button>
     <h2 *ngIf="article.creator"><strong>Author:</strong> <i>{{article.creator}}</i></h2>
   </ion-card-content>
   <ion-row>
