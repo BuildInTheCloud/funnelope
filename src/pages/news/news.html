@@ -16,7 +16,7 @@
   <ion-item>
     <ion-avatar item-left><img src="assets/images/{{article.icon}}"></ion-avatar>
     <h2>{{article.title}}</h2>
-    <p>{{article.pubDate}}</p>
+    <p>{{dateDisplay(1, article.pubDate)}}</p>
   </ion-item>
   <img *ngIf="article.content" src="{{article.content.url}}"/>
   <img *ngIf="!article.content" src="assets/images/{{article.logo}}"/>
@@ -39,6 +39,9 @@
         <ion-icon name="link"></ion-icon>
         <span>Go To Site For Full Article</span>
       </a>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>{{dateDisplay(0, article.pubDate)}} ago</ion-note>
     </ion-col>
   </ion-row>
 </ion-card>

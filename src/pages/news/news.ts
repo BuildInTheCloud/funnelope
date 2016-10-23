@@ -69,4 +69,18 @@ export class NewsPage {
     }
   }
 
+  dateDisplay(type, pubDate) {
+    if (type == 0) {
+      var tmpDate: any = pubDate / (60 * 60 * 1000);
+      if (tmpDate > 24) {
+        var d: any = (tmpDate / 24) + "d ";
+        return d;
+      } else {
+        return tmpDate + "h";
+      }
+    } else if (type == 1) {
+      var tmpDate: any  = new Date(pubDate);
+      return tmpDate;
+    }
+  }
 }

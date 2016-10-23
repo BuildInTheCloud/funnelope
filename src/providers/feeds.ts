@@ -53,20 +53,20 @@ export class Feeds {
           //console.log(3);
           source.icon = feed.icon;
           source.logo = feed.logo;
+          source.pubDate = (new Date(source.pubDate)).getTime();
         });
         newFeed.feed = rawFeed;
         this.feedsRaw.push(newFeed);
         if (this.feedsRaw.length >= this.feedMaster.length) {
           this.feedMaster.forEach(source => {
-            //console.log(4);
             if (source.feed) {
               source.feed.forEach(news => {
-                //console.log(5);
                 this.cache.push(news);
               });
             }
-            this.storage.set('savedFeeds', JSON.stringify(this.cache) );
           });
+          this.cache = this.cache.sort(function(a,b){return b.pubDate - a.pubDate});
+          this.storage.set('savedFeeds', JSON.stringify(this.cache) );
         }
       });
     });
