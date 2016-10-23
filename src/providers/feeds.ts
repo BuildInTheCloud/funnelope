@@ -8,14 +8,32 @@ import 'rxjs/add/operator/catch';
 export class Feeds {
   public feedMaster: any = [];
   public feedsRaw: any = [];
-  public cache: any = [];
+  public cache: any;
 
   constructor(public http: Http, public storage: Storage) {
-    if (this.cache.length == 0) {
-      this.init();
-    } else {
-      console.log("IN CACHE");
-    }
+    this.loadMasterList().then(
+      data => {
+      if (!this.cache) {
+        this.load();
+      } else {
+        console.log("IN CACHE");
+      }
+    });
+  }
+
+  public getMasterList(): any  {
+    return this.feedMaster;
+  }
+
+  public loadMasterList(): Promise<any> {
+    return Promise.resolve(
+      this.http.get("assets/data/feeds.json")
+        .map(res => res.json())
+        .subscribe(data => {
+          this.feedMaster = data;
+          return true;
+        })
+    );
   }
 
   public load(): any {

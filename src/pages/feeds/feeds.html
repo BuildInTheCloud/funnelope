@@ -3,7 +3,10 @@
     <ion-title>Feed Selection</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-
+<ion-content padding class="card-background-page">
+  <ion-card *ngFor="let feed of feedIndex; let key = index;">
+    <img src="assets/images/{{feed.logo}}"/>
+    <div class="card-title">{{feed.title}}</div>
+    <div class="card-subtitle">{{feed.type}}</div>
+  </ion-card>
 </ion-content>
