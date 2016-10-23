@@ -5,6 +5,24 @@
 </ion-header>
 
 <ion-content padding>
-
-<button (click)="gotoFeedSetup()">Feed Manager</button>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="img/marty-avatar.png">
+      </ion-avatar>
+      <h2>Marty McFly</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
+    <ion-card-content>
+      <p>blah .... blah ..... blah ...</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button primary clear small (click)="gotoFeedSetup()">
+          <ion-icon name="paper"></ion-icon>
+          <div>Feed Manager</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
