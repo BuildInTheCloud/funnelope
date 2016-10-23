@@ -1,4 +1,5 @@
 [
+    {"key": "cooking", "type": "rss", "icon": "cookinglight-icon.jpg", "logo": "cookinglight.jpg", "url": "http://feeds.cookinglight.com/CookingLight/latest?format=xml"},
     {"key": "gamespot-news", "type": "rss", "icon": "gamespot-icon.png", "logo": "gamespot.jpg", "url": "http://www.gamespot.com/feeds/news/"},
     {"key": "gamespot-new-releases", "type": "rss", "icon": "gamespot-icon.png", "logo": "gamespot.jpg", "url": "http://www.gamespot.com/feeds/new_releases/"},
     {"key": "nytimes", "type": "rss", "icon": "nytimes-icon.png", "logo": "nytimes.jpg", "url": "http://rss.nytimes.com/services/xml/rss/nyt/Business.xml"}
