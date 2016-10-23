@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { MyApp } from './app.component';
@@ -7,6 +7,7 @@ import { Feeds } from '../providers/feeds';
 //-- app pages
 import { NewsPage } from '../pages/news/news';
 import { ProfilePage } from '../pages/profile/profile';
+import { RefreshPage } from '../pages/refresh/refresh';
 import { AboutPage } from '../pages/about/about';
 import { FeedsPage } from '../pages/feeds/feeds';
 
@@ -16,6 +17,7 @@ import { FeedsPage } from '../pages/feeds/feeds';
     TabsPage,
     NewsPage,
     ProfilePage,
+    RefreshPage,
     AboutPage,
     FeedsPage
   ],
@@ -28,16 +30,20 @@ import { FeedsPage } from '../pages/feeds/feeds';
     TabsPage,
     NewsPage,
     ProfilePage,
+    RefreshPage,
     AboutPage,
     FeedsPage
   ],
   providers: [
     Storage,
+    Feeds
+    /*
     { provide: Feeds,
         useFactory: (config: Feeds) => () => config.init(),
         deps: [],
         multi: true
     }
+    */
   ]
 })
 

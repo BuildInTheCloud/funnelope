@@ -21,7 +21,7 @@
   <img *ngIf="article.content" src="{{article.content.url}}"/>
   <ion-card-content>
     <p *ngIf="!article.description || (article.description && article.description.length < 10)" [innerHTML]="article.title"></p>
-    <button class="more" *ngIf="article.description && article.description.length > 10" (click)="showDetails(key, $event)">
+    <button class="more pull-right" *ngIf="article.description && article.description.length > 10" (click)="showDetails(key, $event)">
       <ion-icon name="paper"></ion-icon>
       <span>Click to read more ...</span>
     </button>

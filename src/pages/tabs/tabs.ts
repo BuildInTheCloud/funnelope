@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 //-- app pages for tabs
 import { NewsPage } from '../news/news';
 import { ProfilePage } from '../profile/profile';
+import { RefreshPage } from '../refresh/refresh';
 import { AboutPage } from '../about/about';
 
 @Component({
@@ -12,6 +13,7 @@ import { AboutPage } from '../about/about';
 export class TabsPage {
   tabNews: any = NewsPage;
   tabProfile: any = ProfilePage;
+  tabRefresh: any = RefreshPage;
   tabAbout: any = AboutPage;
 
   constructor() {

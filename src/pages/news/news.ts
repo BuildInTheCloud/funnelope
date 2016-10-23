@@ -13,6 +13,7 @@ export class NewsPage {
   feed: any = [];
   errorMessage: any;
   searchFor: string = "";
+  shouldShowCancel: boolean = true;
 
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
@@ -34,6 +35,9 @@ export class NewsPage {
   showDetails(indexKey, event) {
     event.srcElement.parentNode.className = "hideIT";
     event.srcElement.parentNode.nextElementSibling.className = "showIT";
+  }
+  onSearchCancel(event) {
+    this.feed = this.feedRAW;
   }
   onSearchInput(event) {
     var searchText = event.target.value;
