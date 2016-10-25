@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content>
-<ion-card *ngFor="let article of feed; let key = index;">
+<ion-card responsive-sm *ngFor="let article of feed; let key = index;">
   <ion-item>
     <ion-avatar item-left><img src="assets/images/{{article.icon}}"></ion-avatar>
     <h2>{{article.title}}</h2>
