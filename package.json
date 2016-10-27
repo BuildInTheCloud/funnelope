@@ -1,9 +1,14 @@
 {
   "name": "funnelope",
+  "version": "0.0.2",
   "author": "BuildInTheCloud",
   "homepage": "http://www.buildinthecloud/funnelope.html",
   "description": "Madd feader.",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BuildInTheCloud/funnelope.git"
+  },
   "scripts": {
     "build": "ionic-app-scripts build",
     "watch": "ionic-app-scripts watch",
@@ -32,20 +37,23 @@
     "zone.js": "0.6.21"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "0.0.34",
-    "typescript": "2.0.3"
+    "@ionic/app-scripts": "0.0.36",
+    "typescript": "^2.0.3"
   },
   "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
-    "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    {
+      "locator": "https://github.com/apache/cordova-plugin-splashscreen.git",
+      "id": "cordova-plugin-splashscreen"
+    },
+    {
+      "locator": "https://www.npmjs.com/package/cordova-plugin-admobpro.git",
+      "id": "cordova-plugin-admobpro"
+    },
+    "cordova-plugin-crosswalk-webview"
   ],
   "cordovaPlatforms": [
     "ios",
-    "android",
-    "windows"
+    "android"
   ]
 }
