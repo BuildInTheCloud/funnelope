@@ -1,7 +1,11 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Feed Selection</ion-title>
-  </ion-navbar>
+  <ion-searchbar
+    placeholder="Search title and details"
+    [(ngModel)]="searchFor"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onSearchInput($event)"
+    (ionCancel)="onSearchCancel($event)">
+  </ion-searchbar>
 </ion-header>
 <ion-content padding class="card-background-page">
   <ion-card *ngFor="let feed of feedIndex; let key = index;">

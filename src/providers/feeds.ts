@@ -14,18 +14,12 @@ export class Feeds {
     this.loadMasterList().then( data => { } );
   }
 
-  public refreshNews(): boolean {
-    this.buildNewsCache();
-    return true;
-  }
-  /*
   public refreshNews(): Promise<any> {
-    return Promise.resolve( data => {
-      this.buildNewsCache();
-      return {success: true};
+    return new Promise((resolve, reject) => {
+      resolve(this.buildNewsCache());
     });
   }
-  */
+
   public getMasterList(): any  {
     return this.feedMaster;
   }
@@ -41,20 +35,18 @@ export class Feeds {
     );
   }
 
-  public load(): Promise<any>  {
-    return this.storage.get('savedFeeds').then(data => {
-      return JSON.parse(data);
-    });
-  }
-
-  private buildNewsCache(): any {
-    this.feedMaster.forEach(feed => {
-      //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
+  //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
+  private buildNewsCache(): Promise<any> {
+    //-- TODO: this will change to user selected feeds
+    return this.feedMaster.forEach(feed => {
+      //-- relay through yahoo
       var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
-      this.http.get(url).subscribe(res => {
+      //-- get each feed
+      return this.http.get(url).subscribe(res => {
         var newFeed: any = feed;
         var rawFeed = this.processRawFeed(res.json(), feed.type);
         if (rawFeed.length > 0) {
+          //-- updates for news display
           rawFeed.forEach(source => {
             source.icon = feed.icon;
             source.logo = feed.logo;
@@ -64,17 +56,28 @@ export class Feeds {
         } else {
           newFeed.feed = [];
         }
+        //-- add to raw feeds
         this.feedsRaw.push(newFeed);
+        //-- if we have all the feeds, build cache
         if (this.feedsRaw.length >= this.feedMaster.length) {
           this.feedsRaw.forEach(source => {
             if (source.feed) {
               source.feed.forEach(news => {
-                this.cache.push(news);
+                //-- only include news with images
+                if (news.content) {
+                  if (news.content.url) {
+                    //-- TODO: filter based on user rules
+                    this.cache.push(news);
+                  }
+                }
               });
             }
           });
+          //-- add to local cache
           this.cache = this.cache.sort(function(a,b){return b.pubDate - a.pubDate});
+          //-- save cache to storage
           this.storage.set('savedFeeds', JSON.stringify(this.cache) );
+          return {success: true};
         }
       });
     });
@@ -95,18 +98,7 @@ export class Feeds {
       });
       return returnItems;
     } else if (type == "atom" && data.query.results) {
-      var returnItems = data.query.results.item;
-      returnItems.forEach(source => {
-        if (source.description) {
-          try {
-            source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ");
-          } catch(e) {
-            source.description = JSON.stringify(source.description)
-            source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ");
-          }
-        }
-      });
-      return returnItems;
+      return [];
     } else {
       return [];
     }

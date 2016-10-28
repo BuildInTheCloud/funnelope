@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Feeds } from '../../providers/feeds';
+import { Storage } from '@ionic/storage';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'page-news',
@@ -14,20 +16,29 @@ export class NewsPage {
   errorMessage: any;
   searchFor: string = "";
   shouldShowCancel: boolean = false;
+  timer: any;
 
-  constructor(public navCtrl: NavController, public feeds: Feeds) {
+  constructor(public navCtrl: NavController, public feeds: Feeds, public storage: Storage) {
   }
 
-  ngOnInit() {this.loadData();}
+  ngOnInit() {
+    this.timer = Observable.timer(2000, 35000);
+    this.timer.subscribe(t => { this.loadData(t) } );
+  }
 
-  loadData() {
-    this.feeds.load().then(
-      data => {
-        this.feedRAW = data;
-        this.feed = data;
-      },
-      error => { this.feedRAW = []; this.feed = []; this.errorMessage = error; }
-    );
+  ngOnDestroy() {
+    this.timer.unsubscribe();
+  }
+
+  loadData(t): any {
+    console.log("REFRESH NEWS");
+    this.storage.get('savedFeeds').then(data => {
+      if (JSON.stringify(this.feedRAW) !== data) {
+        this.feedRAW = JSON.parse(data);
+        this.feed = JSON.parse(data);
+      }
+      return true;
+    });
   }
 
   showDetails(indexKey, event) {
