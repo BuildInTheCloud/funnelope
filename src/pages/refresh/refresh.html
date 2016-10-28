@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>News</ion-title>
+    <ion-title>Feed Updates</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <br/><br/><br/>
-  <button (click)="refreshNews()">Refresh News</button>
-
+  <button ion-button (click)="refreshNews()">Refresh News</button>
+  <div id="status">{{status}}</div>
 </ion-content>

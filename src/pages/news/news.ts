@@ -15,7 +15,6 @@ export class NewsPage {
   searchFor: string = "";
   shouldShowCancel: boolean = false;
 
-
   constructor(public navCtrl: NavController, public feeds: Feeds) {
   }
 
@@ -24,11 +23,10 @@ export class NewsPage {
   loadData() {
     this.feeds.load().then(
       data => {
-        this.feed = data;
         this.feedRAW = data;
         this.feed = data;
       },
-      error => { this.feedRAW = []; this.feed = []; this.errorMessage = <any>error; }
+      error => { this.feedRAW = []; this.feed = []; this.errorMessage = error; }
     );
   }
 

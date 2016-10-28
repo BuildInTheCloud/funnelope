@@ -16,12 +16,16 @@ export class RefreshPage {
   }
 
   refreshNews() {
-    this.feeds.init().then(
+    this.status = "Loading Updates ....";
+    this.feeds.refreshNews()
+    /*
+    this.feeds.refreshNews().then(
       data => {
-        status = data;
+        this.status = "SUCCESS: " + JSON.stringify(data);
       },
-      error => { this.errorMessage = <any>error; }
+      error => { this.errorMessage = <any>error; this.status = <any>error; }
     );
+    */
   }
 
 }
