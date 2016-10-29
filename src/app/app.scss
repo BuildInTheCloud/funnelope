@@ -16,8 +16,14 @@
 // automatically applied to the <body> element in the app.
 
 
+.toolbar-background {
+    background-color:$primary !important;
+}
+.toolbar-title {
+    color:$font-light !important;
+}
 ion-searchbar {
-    background-color:#a5a48b !important;
+    background-color:$dark !important;
 }
 ion-header {
     ion-row {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FeedsPage } from '../feeds/feeds';
+import { IonicModule } from 'ionic-angular';
 
 @Component({
   selector: 'page-profile',

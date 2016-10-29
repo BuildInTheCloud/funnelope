@@ -11,15 +11,19 @@ import { Feeds } from '../../providers/feeds';
 export class RefreshPage {
   errorMessage: any;
   status: any;
+  downloading: boolean = false;
 
   constructor(public navCtrl: NavController, public feeds: Feeds) {
+
   }
 
   refreshNews() {
+    this.downloading = true;
     this.status = "Loading Updates ....";
     this.feeds.refreshNews().then(
       data => {
-        this.status = "SUCCESS: " + JSON.stringify(data);
+        this.status = "Refresh Completed<br/>" + Date();
+        this.downloading = false;
       },
       error => { this.errorMessage = <any>error; this.status = <any>error; }
     );

@@ -6,6 +6,6 @@
 
 <ion-content>
   <br/><br/><br/>
-  <button ion-button (click)="refreshNews()">Refresh News</button>
+  <button ion-button (click)="refreshNews()" *ngIf="!downloading">Refresh News</button>
   <div id="status">{{status}}</div>
 </ion-content>
