@@ -5,6 +5,7 @@ import { NewsPage } from '../news/news';
 import { ProfilePage } from '../profile/profile';
 import { RefreshPage } from '../refresh/refresh';
 import { AboutPage } from '../about/about';
+import { FeedsPage } from '../feeds/feeds';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -15,6 +16,7 @@ export class TabsPage {
   tabProfile: any = ProfilePage;
   tabRefresh: any = RefreshPage;
   tabAbout: any = AboutPage;
+  tabFeedManager: any = FeedsPage;
 
   constructor() {
 
