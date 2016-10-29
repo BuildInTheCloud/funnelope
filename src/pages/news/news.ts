@@ -22,7 +22,7 @@ export class NewsPage {
   }
 
   ngOnInit() {
-    this.timer = Observable.timer(2000, 35000);
+    this.timer = Observable.timer(2000, 99000);
     this.timer.subscribe(t => { this.loadData(t) } );
   }
 
