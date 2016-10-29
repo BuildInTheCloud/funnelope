@@ -21,8 +21,11 @@
 .tab-button {
     color:$font-light !important;
 }
+.tab-button[aria-selected="true"] {
+    background-color:$dark !important;
+}
 .toolbar-background {
-    background-color:$primary !important;
+    background-color:$dark !important;
 }
 .toolbar-title {
     color:$font-light !important;
