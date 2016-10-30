@@ -13,7 +13,7 @@
   <ion-item>
     <ion-avatar item-left><img src="assets/images/{{article.icon}}"></ion-avatar>
     <h2>{{article.title}}</h2>
-    <p>{{dateDisplay(1, article.pubDate)}}</p>
+    <p>{{article.pubDate | amDateFormat:'LL'}}</p>
   </ion-item>
   <img *ngIf="article.content" src="{{article.content.url}}"/>
   <img *ngIf="!article.content" src="assets/images/{{article.logo}}"/>
@@ -38,7 +38,7 @@
       <div *ngIf="article.creator"><strong>Author:</strong> <i>{{article.creator}}</i></div>
     </ion-col>
     <ion-col center text-center>
-      <ion-note>{{dateDisplay(0, article.pubDate)}} ago</ion-note>
+      <ion-note>{{article.pubDate | amCalendar}}</ion-note>
     </ion-col>
   </ion-row>
 </ion-card>

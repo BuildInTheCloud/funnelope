@@ -22,7 +22,7 @@ export class RefreshPage {
     this.status = "Loading Updates ....";
     this.feeds.refreshNews().then(
       data => {
-        this.status = "Refresh Completed<br/>" + Date();
+        this.status = "News will refressh when complete.";
         this.downloading = false;
       },
       error => { this.errorMessage = <any>error; this.status = <any>error; }

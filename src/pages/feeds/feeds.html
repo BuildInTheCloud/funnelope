@@ -8,7 +8,8 @@
   </ion-searchbar>
 </ion-header>
 <ion-content padding class="card-background-page">
-  <ion-card *ngFor="let feed of feedIndex; let key = index;">
+  <ion-card *ngFor="let feed of feedIndex; let i = index;" (click)="selectFeed($event, feed.key, i);">
+    <div id="card{{i}}" class="card-notselected">SELECTED</div>
     <img src="assets/images/{{feed.logo}}"/>
     <div class="card-title">{{feed.title}}</div>
     <div class="card-subtitle">{{feed.type}}</div>

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Feeds } from '../providers/feeds';
+import {MomentModule} from 'angular2-moment';
 //-- app pages
 import { NewsPage } from '../pages/news/news';
 import { ProfilePage } from '../pages/profile/profile';
@@ -22,7 +23,8 @@ import { FeedsPage } from '../pages/feeds/feeds';
     FeedsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

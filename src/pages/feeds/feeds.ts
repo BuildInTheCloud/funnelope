@@ -23,6 +23,15 @@ export class FeedsPage {
     this.feedIndex = this.feeds.getMasterList();
   }
 
+  selectFeed(event, feedKey, index) {
+    var isSelected: boolean = document.getElementById("card"+index).className == "card-selected" ? true : false;
+    if (isSelected) {
+      document.getElementById("card"+index).className = "card-notselected"
+    } else {
+      document.getElementById("card"+index).className = "card-selected"
+    }
+  }
+
   onSearchCancel(event) {
     /*
     this.feed = this.feedRAW;
