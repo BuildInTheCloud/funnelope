@@ -20,6 +20,11 @@ export class Feeds {
     });
   }
 
+  public clearCache(): any {
+    this.storage.set('savedFeeds', JSON.stringify([]) );
+    return {success: true};
+  }
+
   public getMasterList(): any  {
     return this.feedMaster;
   }
@@ -38,6 +43,8 @@ export class Feeds {
   //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
   private buildNewsCache(): Promise<any> {
     //-- TODO: this will change to user selected feeds
+    this.feedsRaw = [];
+    this.cache = [];
     return this.feedMaster.forEach(feed => {
       //-- relay through yahoo
       var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
