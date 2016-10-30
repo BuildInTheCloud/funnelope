@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -8,22 +8,24 @@ import 'rxjs/add/operator/catch';
 export class Feeds {
   public feedMaster: any = [];
   public feedsRaw: any = [];
-  public cache: any = [];
-  public lastUpdate: any = Date();
+  public cache: any;
 
   constructor(public http: Http, public storage: Storage) {
     this.loadMasterList().then( data => { } );
   }
 
   public refreshNews(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      resolve(this.buildNewsCache());
-    });
-  }
-
-  public clearCache(): any {
-    this.storage.set('savedFeeds', JSON.stringify([]) );
-    return {success: true};
+    return Promise.resolve(
+      this.http.get("assets/data/feeds.json")
+        .map(res => res.json())
+        .subscribe(data => {
+          this.feedMaster = data;
+          console.log(1);
+          //this.buildNewsCache();
+          return {success: true};
+        },
+        error => { return { success: false, error: error}; } )
+    );
   }
 
   public getMasterList(): any  {
@@ -41,59 +43,46 @@ export class Feeds {
     );
   }
 
-  //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
-  private buildNewsCache(): Promise<any> {
-    //-- TODO: this will change to user selected feeds
-    this.feedsRaw = [];
-    this.cache = [];
-    return this.feedMaster.forEach(feed => {
-      //-- relay through yahoo
+  public load(): Promise<any>  {
+    return this.storage.get('savedFeeds').then(data => {
+      return JSON.parse(data);
+    });
+  }
+
+  private buildNewsCache(): any {
+    this.feedMaster.forEach(feed => {
+      console.log(2);
+      //-- {"key": "gamespot-news", "type": "rss", "icon": "", "logo": "", "url": "http://www.gamespot.com/feeds/news/", "feed": ""},
       var url: string = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'+encodeURIComponent(feed.url)+'%22&format=json';
-      //-- get each feed
-      return this.http.get(url).subscribe(res => {
+      this.http.get(url).subscribe(res => {
+        console.log(3);
         var newFeed: any = feed;
         var rawFeed = this.processRawFeed(res.json(), feed.type);
-        if (rawFeed.length > 0) {
-          //-- updates for news display
-          rawFeed.forEach(source => {
-            source.icon = feed.icon;
-            source.logo = feed.logo;
-            source.pubDate = (new Date(source.pubDate)).getTime();
-          });
-          newFeed.feed = rawFeed;
-        } else {
-          newFeed.feed = [];
-        }
-        //-- add to raw feeds
+        rawFeed.forEach(source => {
+          source.icon = feed.icon;
+          source.logo = feed.logo;
+          source.pubDate = (new Date(source.pubDate)).getTime();
+        });
+        newFeed.feed = rawFeed;
         this.feedsRaw.push(newFeed);
-        //-- if we have all the feeds, build cache
         if (this.feedsRaw.length >= this.feedMaster.length) {
-          this.feedsRaw.forEach(source => {
+          console.log(4);
+          this.feedMaster.forEach(source => {
             if (source.feed) {
               source.feed.forEach(news => {
-                //-- only include news with images
-                if (news.content) {
-                  if (news.content.url) {
-                    //-- TODO: filter based on user rules
-                    this.cache.push(news);
-                  }
-                }
+                this.cache.push(news);
               });
             }
           });
-          //-- add to local cache
           this.cache = this.cache.sort(function(a,b){return b.pubDate - a.pubDate});
-          //-- save cache to storage
           this.storage.set('savedFeeds', JSON.stringify(this.cache) );
-          this.lastUpdate = Date();
-          return {success: true};
         }
       });
     });
   }
 
   private processRawFeed(data, type) {
-    if (type == "rss" && data.query.results) {
+    if (type == "rss") {
       var returnItems = data.query.results.item;
       returnItems.forEach(source => {
         if (source.description) {
@@ -106,10 +95,16 @@ export class Feeds {
         }
       });
       return returnItems;
-    } else if (type == "atom" && data.query.results) {
-      return [];
-    } else {
-      return [];
+    }
+    if (type == "atom") {
+      var returnItems = data.query.results.item;
+      returnItems.forEach(source => {
+        //console.log(7);
+        if (source.description) {
+          source.description = source.description.replace(/<a /g, "<a target=\"_blank\" ");
+        }
+      });
+      return returnItems;
     }
   }
 

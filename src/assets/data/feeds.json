@@ -1,6 +1,7 @@
 [
     {"key": "cooking", "title":"Cooking Light", "type": "rss", "icon": "cookinglight-icon.jpg", "logo": "cookinglight.jpg", "url": "http://feeds.cookinglight.com/CookingLight/latest?format=xml"},
     {"key": "gamespot-news", "title":"GameSpot News", "type": "rss", "icon": "gamespot-icon.png", "logo": "gamespot.jpg", "url": "http://www.gamespot.com/feeds/news/"},
-    {"key": "gamespot-new-releases", "title":"GameSpot New Releases", "type": "rss", "icon": "gamespot-icon.png", "logo": "gamespot.jpg", "url": "http://www.gamespot.com/feeds/new_releases/"},
+    {"key": "cnn", "title":"CNN Top Stories", "type": "rss", "icon": "cnn-icon.png", "logo": "cnn.jpg", "url": "http://rss.cnn.com/rss/cnn_topstories.rss"},
+    {"key": "wired", "title":"Wired Top Stories", "type": "rss", "icon": "wired-icon.png", "logo": "wired.jpg", "url": "https://www.wired.com/feed/"},
     {"key": "nytimes", "title":"NY Times", "type": "rss", "icon": "nytimes-icon.png", "logo": "nytimes.jpg", "url": "http://rss.nytimes.com/services/xml/rss/nyt/Business.xml"}
 ]

@@ -30,6 +30,9 @@
 .toolbar-title {
     color:$font-light !important;
 }
+ion-content {
+    background-color: $body !important;
+}
 ion-searchbar {
     background-color:$dark !important;
 }
