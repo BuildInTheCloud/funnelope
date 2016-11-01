@@ -29,7 +29,7 @@ export class NewsPage {
 
   ngOnInit() {
     this.loadData(null);
-    this.timer = Observable.timer(2000, 33000);
+    this.timer = Observable.timer(2000, 8000);
     this.timer.subscribe(t => { this.loadData(t); } );
   }
 
@@ -38,14 +38,14 @@ export class NewsPage {
   }
 
   loadData(t): any {
-    console.log("REFRESH NEWS");
-    if (this.feedRAW.length > 0) { this.newsLoaded = true; }
+    console.log("REFRESH NEWS TIMER");
+    if (this.feedRAW && this.feedRAW.length > 0) { this.newsLoaded = true; }
     this.storage.get('savedFeeds').then(data => {
-      if (JSON.stringify(this.feedRAW) !== data || this.feedRAW.length <= 0) {
+      if (this.feedRAW && (JSON.stringify(this.feedRAW) !== data || this.feedRAW.length <= 0)) {
         this.feedRAW = JSON.parse(data);
         this.feed = JSON.parse(data);
       }
-      if (this.feedRAW.length > 0) {
+      if (this.feedRAW && this.feedRAW.length > 0) {
         this.newsLoaded = true;
       } else {
         this.newsLoaded = false;

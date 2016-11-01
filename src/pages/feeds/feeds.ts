@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { Feeds } from '../../providers/feeds';
 
 @Component({
@@ -8,27 +9,43 @@ import { Feeds } from '../../providers/feeds';
 })
 
 export class FeedsPage {
-  feedIndex: any = [];
+  feedMaster: any = [];
   errorMessage: any;
   searchFor: string = "";
   shouldShowCancel: boolean = false;
+  myFeeds: any = [];
 
-  constructor(public navCtrl: NavController, public feeds: Feeds) {
-
+  constructor(public navCtrl: NavController, public feeds: Feeds, public storage: Storage) {
+    this.storage.get('myFeeds').then(data => {
+      this.myFeeds = JSON.parse(data) ? JSON.parse(data) : [];
+    });
   }
 
   ngOnInit() {this.loadData();}
 
-  loadData() {
-    this.feedIndex = this.feeds.getMasterList();
-  }
+  loadData() { this.feedMaster = this.feeds.getMasterList(); }
 
-  selectFeed(event, feedKey, index) {
+  selectFeed(event: any, feedKey: string, index: number) {
     var isSelected: boolean = document.getElementById("card"+index).className == "card-selected" ? true : false;
     if (isSelected) {
-      document.getElementById("card"+index).className = "card-notselected"
+      document.getElementById("card"+index).className = "card-notselected";
+      this.myFeeds = this.myFeeds.filter(record => record.feed !== feedKey);
     } else {
-      document.getElementById("card"+index).className = "card-selected"
+      document.getElementById("card"+index).className = "card-selected";
+      var match = this.myFeeds.filter(record => record.feed === feedKey);
+      if (match.length == 0) {
+        this.myFeeds.push({feed: feedKey, keywords: [] });
+      }
+    }
+    this.storage.set('myFeeds', JSON.stringify(this.myFeeds) );
+  }
+
+  setSelected(feedKey, index) {
+    var match = this.myFeeds.filter(record => record.feed === feedKey);
+    if (match.length == 0) {
+      return "card-notselected";
+    } else {
+      return "card-selected";
     }
   }
 

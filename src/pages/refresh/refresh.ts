@@ -16,6 +16,11 @@ export class RefreshPage {
 
   }
 
+  clearMyFeeds() {
+    this.feeds.clearMyFeeds();
+    this.presentToast("Selected Feeds Cleared.");
+  }
+
   clearCache() {
     this.feeds.clearCache();
     this.presentToast("Local Cache Cleared, News Tab will relect change on next auto refresh.");
